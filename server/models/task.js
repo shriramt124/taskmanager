@@ -10,11 +10,11 @@ const taskSchema = new mongoose.Schema({
         required:true
     },
     important:{
-        type:boolean,
+        type:Boolean,
         default:false
     },
     complete:{
-        type:boolean,
+        type:Boolean,
         default:false
     }
 },{timestamps:true})

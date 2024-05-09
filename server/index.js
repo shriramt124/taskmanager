@@ -1,22 +1,32 @@
 const dotenv = require("dotenv")
+const cors = require("cors")
 const express = require("express")
- const dbConnect = require("./utils/dbConnect")
+const cookieParser  = require("cookie-parser")
+const dbConnect = require("./utils/dbConnect")
+const userRouter = require("./routes/userRouter")
+const taskRouter = require("./routes/taskRouter");
+
 const app = express()
 dotenv.config();
+app.use(cors())
+app.use(cookieParser());
+app.use(express.json());
 
- 
 
-app.get("/",(req,res)=>{
-    res.send("hello from server")
-})
- 
+// app.get("/",(req,res)=>{
+//     res.send("hello from server")
+// })
 
-const port  = process.env.PORT || 2000
-app.listen(port,async ()=>{
-   try {
-    await dbConnect();
-    console.log('server is runnig on port ',port);
-   } catch (error) {
-    
-   }
+app.use("/api/v1", userRouter);
+app.use("/api/tasks",taskRouter);
+
+
+const port = process.env.PORT || 2000
+app.listen(port, async () => {
+    try {
+        await dbConnect();
+        console.log('server is runnig on port ', port);
+    } catch (error) {
+
+    }
 })
