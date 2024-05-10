@@ -1,6 +1,7 @@
 const dotenv = require("dotenv")
 const cors = require("cors")
 const express = require("express")
+
 const cookieParser  = require("cookie-parser")
 const dbConnect = require("./utils/dbConnect")
 const userRouter = require("./routes/userRouter")
@@ -8,7 +9,13 @@ const taskRouter = require("./routes/taskRouter");
 
 const app = express()
 dotenv.config();
-app.use(cors())
+app.use(
+    cors({
+      origin: ["http://localhost:3000"],
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true,
+    })
+  );
 app.use(cookieParser());
 app.use(express.json());
 

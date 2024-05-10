@@ -75,19 +75,24 @@ router.post("/login",async(req,res)=>{
                 message:"invalid credentials"
             })
         }
+
         const token = jwt.sign({id:existingUser._id},process.env.JWT_SECRET,{expiresIn:'1h'})
+        //set res header to token
+
         console.log("calling from login",token);
-        res.cookie('token',token,{httpOnly:true,maxAge:3600*1000*24})
+        
         res.status(200).json({
             success:true,
             messaage:"user logged in successfully",
+            id:existingUser._id,
             token
         })
 
     } catch (error) { 
         return res.json(500).json({
             success:false,
-            message:error.message
+            message:error.message,
+            stack:error.stack
         })
     }
 })
