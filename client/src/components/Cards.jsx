@@ -1,15 +1,26 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoAddCircleSharp } from "react-icons/io5";
-function Cards({ isHome, setInputdiv, data, setUpdatedData }) {
+
+
+
+
+function Cards({ isHome, setInputdiv, data, setUpdatedData,isChanged,setIsChanged }) {
+
+ 
   const handleClick = () => {
     setInputdiv("fixed");
+    setIsChanged(prev => !prev);
   };
+
+
 
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
   };
+
+
 
   const handleComplete = async (id) => {
     try {
@@ -19,10 +30,14 @@ function Cards({ isHome, setInputdiv, data, setUpdatedData }) {
         { headers }
       );
       console.log(response);
+      setIsChanged(prev => !prev);
     } catch (error) {
       console.log(error);
     }
   };
+
+
+
   const handleImportantTask = async (id) => {
     try {
       const response = await axios.put(
@@ -31,10 +46,14 @@ function Cards({ isHome, setInputdiv, data, setUpdatedData }) {
         { headers }
       );
       console.log(response);
+      setIsChanged(prev => !prev);
     } catch (error) {
       console.log(error);
     }
   };
+
+
+
   const deleteTask = async (id) => {
     try {
       const response = await axios.delete(
@@ -42,15 +61,23 @@ function Cards({ isHome, setInputdiv, data, setUpdatedData }) {
         { headers }
       );
       console.log(response);
+      setIsChanged(prev => !prev);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
+
+
 
   const handleUpdate = (id, title, desc) => {
     setInputdiv("fixed");
     setUpdatedData({ id: id, title: title, desc: desc });
+    setIsChanged(prev => !prev);
   };
+
+
+ 
+
   return (
     <div className="flex gap-2 flex-wrap">
       {data &&

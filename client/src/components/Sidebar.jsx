@@ -50,7 +50,7 @@ const Sidebar = () => {
 
     };
     fetch();
-  }, []);
+  },[]);
   const logout = () => {
     dispatch(authActions.logout());
     localStorage.clear("id");

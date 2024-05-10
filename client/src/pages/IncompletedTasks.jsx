@@ -5,6 +5,7 @@ import Cards from '../components/Cards';
 const IncompletedTasks = () => {
   
   const [Data,setData] = useState();
+ const [isChanged,setIsChanged] = useState(false)
 
   const headers = {
     id: localStorage.getItem("id"),
@@ -20,12 +21,12 @@ const IncompletedTasks = () => {
       setData(response.data.data);
     };
     fetch();
-  },[]);
+  },[isChanged]);
  Data && console.log(Data);
 
   return (
     <div>
-      <Cards data={Data} isHome={false} />
+      <Cards data={Data} isHome={false} isChanged={isChanged} setIsChanged={setIsChanged} />
     </div>
   )
 }

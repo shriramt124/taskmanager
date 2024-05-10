@@ -4,7 +4,7 @@ import axios from 'axios';
  
 const ImportantTasks = () => {
   const [Data,setData] = useState();
-
+  const [isChanged,setIsChanged] = useState(false)
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -19,12 +19,12 @@ const ImportantTasks = () => {
       setData(response.data.data);
     };
     fetch();
-  },[]);
+  },[isChanged]);
  Data && console.log(Data);
 
   return (
     <div>
-        <Cards isHome={false} data={Data} />
+        <Cards isHome={false} data={Data} isChanged={isChanged} setIsChanged={setIsChanged} />
     </div>
   )
 }

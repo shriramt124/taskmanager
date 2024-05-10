@@ -5,26 +5,33 @@ import axios from "axios";
 
 const Alltasks = () => {
   const [Data, setData] = useState();
-  const [updatedData,setUpdatedData] = useState({id:"",title:"",desc:""});
+  const [isChanged,setIsChanged] = useState();
 
+  const [inputdiv, setInputdiv] = useState("hidden");
+  const [updatedData, setUpdatedData] = useState({
+    id: "",
+    title: "",
+    desc: "",
+  });
+ 
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
   };
 
+  const fetch = async () => {
+    const response = await axios.get(
+      "http://localhost:2000/api/tasks/all-tasks",
+      { headers: headers }
+    );
+    setData(response.data.data);
+  };
+    
   useEffect(() => {
-    const fetch = async () => {
-      const response = await axios.get(
-        "http://localhost:2000/api/tasks/all-tasks",
-        { headers: headers }
-      );
-      setData(response.data.data);
-    };
     fetch();
-  },[]);
- 
-  const [inputdiv, setInputdiv] = useState("hidden");
-  return (
+  }, [updatedData,isChanged]);
+
+  return ( 
     <div>
       {Data && (
         <Cards
@@ -33,10 +40,16 @@ const Alltasks = () => {
           setInputdiv={setInputdiv}
           data={Data.tasks}
           setUpdatedData={setUpdatedData}
-
+          isChanged={isChanged}
+          setIsChanged={setIsChanged}
         />
       )}
-      <InputData inputdiv={inputdiv} setInputdiv={setInputdiv} updatedData={updatedData} setUpdatedData={setUpdatedData} />
+      <InputData
+        inputdiv={inputdiv}
+        setInputdiv={setInputdiv}
+        updatedData={updatedData}
+        setUpdatedData={setUpdatedData}
+      />
     </div>
   );
 };
