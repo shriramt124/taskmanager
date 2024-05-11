@@ -23,22 +23,22 @@ const Alltasks = () => {
 
   const fetch = async () => {
     try {
-      
-     
     const response = await axios.get(
       "http://localhost:2000/api/tasks/all-tasks",
       { headers: headers }
     );
     setData(response.data.data);
   } catch (error) {
-      navigate("/login");
+    localStorage.clear();
+    navigate("/login");
+     console.log('error');
 
   }
   };
     
   useEffect(() => {
     fetch();
-  }, [updatedData,isChanged]);
+  }, [isChanged]);
 
   return ( 
     <div>
