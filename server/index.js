@@ -20,9 +20,9 @@ app.use(cookieParser());
 app.use(express.json());
 
 
-// app.get("/",(req,res)=>{
-//     res.send("hello from server")
-// })
+app.get("/",(req,res)=>{
+    res.send("hello from server")
+})
 
 app.use("/api/v1", userRouter);
 app.use("/api/tasks",taskRouter);
