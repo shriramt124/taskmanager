@@ -21,7 +21,9 @@ app.use(express.json());
 
 
 app.get("/",(req,res)=>{
-    res.send("hello from server")
+    res.status(200).json({
+      message:"hello from the server"
+    })
 })
 
 app.use("/api/v1", userRouter);
