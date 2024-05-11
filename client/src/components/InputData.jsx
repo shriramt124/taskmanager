@@ -30,6 +30,7 @@ function InputData({ inputdiv, setInputdiv, updatedData, setUpdatedData }) {
         { headers }
       );
       console.log(response);
+      
       setData({ title: "", desc: "" });
       setInputdiv("hidden");
     }
@@ -57,13 +58,13 @@ function InputData({ inputdiv, setInputdiv, updatedData, setUpdatedData }) {
   return (
     <>
       <div
-        className={` ${inputdiv} top-0 left-0 bg-gray-600 opacity-50 h-screen w-full`}
+        className={` ${inputdiv} top-0 left-0 bg-gray-400 opacity-50 h-screen w-full`}
       ></div>
 
       <div
         className={`${inputdiv} top-0 left-0 w-full h-screen flex justify-center items-center`}
       >
-        <div className="w-2/6 bg-gray-800 p-4 rounded-md">
+        <div className="w-2/6 bg-gray-400 p-4 rounded-md">
           <button
             className="flex justify-end text-xl font-bold"
             onClick={handleClick}
@@ -76,7 +77,7 @@ function InputData({ inputdiv, setInputdiv, updatedData, setUpdatedData }) {
             placeholder="title"
             name="title"
             onChange={change}
-            className="w-full bg-gray-700 p-2 rounded-md outline-none my-3"
+            className="w-full bg-gray-200 p-2 rounded-md outline-none my-3"
           />
 
           <textarea
@@ -87,7 +88,7 @@ function InputData({ inputdiv, setInputdiv, updatedData, setUpdatedData }) {
             placeholder="description.."
             cols="30"
             rows="10"
-            className="px-3 py-2 rounded w-full bg-gray-700 my-3"
+            className="px-3 py-2 rounded w-full bg-gray-200 my-3"
           ></textarea>
           {updatedData.id === "" ? (
             <button

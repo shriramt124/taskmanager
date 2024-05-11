@@ -28,7 +28,7 @@ const dispatch = useDispatch();
   }, []);
 
   return (
-    <div className="App bg-gray-900 text-white h-screen p-2 relative">
+    <div className="App relative">
 
       <Routes>
         <Route path='/' element={<Home />} >

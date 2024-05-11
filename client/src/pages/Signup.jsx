@@ -34,47 +34,47 @@ function Signup() {
     }
   };
   return (
-    <div className="sm:w-4/6  w-5/6 flex flex-col text-center m-auto mt-10 bg-gray-800 rounded-lg p-4">
+    <div className="sm:w-4/6  w-5/6 flex flex-col text-center m-auto mt-10 bg-gray-400 rounded-lg p-4">
       <h2 className="font-bold text-4xl capitalize my-8">Signup</h2>
       <form className="flex flex-col gap-8" onSubmit={submit}>
-        <div className="wrapper bg-gray-700 rounded w-full">
+        <div className="wrapper bg-gray-300 rounded w-full">
           <input
             type="text"
             name="username"
             placeholder="username.."
-            className="w-full p-3 text-xl bg-gray-700 rounded-md outline-none"
+            className="w-full p-3 text-xl bg-gray-300 rounded-md outline-none"
             value={data.username}
             onChange={change}
           />
         </div>
-        <div className="wrapper bg-gray-700 rounded-md w-full">
+        <div className="wrapper bg-gray-300 rounded-md w-full">
           <input
             type="email"
             name="email"
             placeholder="email.."
-            className="w-full p-3 text-xl bg-gray-700 outline-none"
+            className="w-full p-3 text-xl bg-gray-300 outline-none"
             onChange={change}
             value={data.email}
           />
         </div>
-        <div className="wrapper bg-gray-700 rounded-md w-full">
+        <div className="wrapper bg-gray-300 rounded-md w-full">
           <input
             type="password"
             name="password"
             placeholder="password.."
-            className="w-full p-3 text-xl bg-gray-700  outline-none"
+            className="w-full p-3 text-xl bg-gray-300  outline-none"
             onChange={change}
             value={data.password}
           />
         </div>
         <div className="wrapper">
-          <button className="w-full my-4 bg-gray-700 p-4 text-xl rounded-md hover:bg-gray-600 ">
+          <button className="w-full my-4 bg-gray-300 p-4 text-xl rounded-md hover:bg-gray-500 ">
             Signup
           </button>
         </div>
       </form>
       <div className="links">
-        <span className="capitalize text-gray-400">
+        <span className="capitalize text-gray-700">
           alredy have an account ?{" "}
           <Link to="/login" className="text-blue-500">
             Login

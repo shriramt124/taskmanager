@@ -11,7 +11,7 @@ import axios from "axios";
 const Sidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [Data,setData] = useState();
+  const [Data, setData] = useState();
 
   const data = [
     {
@@ -35,52 +35,57 @@ const Sidebar = () => {
       link: "/incompletedTasks",
     },
   ];
+
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
   };
+
+
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
         "http://localhost:2000/api/tasks/all-tasks",
-        {headers:headers}
-        
+        { headers: headers }
       );
       setData(response.data.data);
-
     };
     fetch();
-  },[]);
+  }, []);
+
+
   const logout = () => {
     dispatch(authActions.logout());
     localStorage.clear("id");
     localStorage.clear("token");
     navigate("/login");
   };
+
+
   return (
     <>
-     {Data && <div>
-        <h2 className="text-xl">{Data.username}</h2>
-        <h4 className="my-2 text-gray-500">{Data.email}</h4>
-        <hr />
-      </div>}
-      <div>
+    <div className="flex justify-between  px-2 md:px-4 py-4  shadow-gray-600 mb-6 items-center"> 
+    <div className="logo text-3xl ">Task Manager</div>
+    <div className="flex gap-2 sm:gap-4 md:gap-6 justify-center items-center"> 
+    <div className="text-center items-center m-auto">
+        <button onClick={logout} className="bg-orange-500 p-3 rounded-md text-white text-md sm:text-xl ">Log Out</button>
+      </div>
+      {Data && (
+        <div>
+          <h2 className="text-md  sm:text-xl md:text-2xl capitalize bg-orange-500 rounded-md  text-white p-2" >{Data.username}</h2>
+        </div>
+      )}
+       
+      </div>
+      </div>
+      <div className="flex gap-4 px-6 overflow-x-auto mb-4">
         {data.map((item, i) => (
-          <Link
-            to={item.link}
-            key={i}
-            className="my-2 flex items-center  gap-2 capitalize hover:bg-gray-600 cursor-pointer p-2 rounded-md transition-all duration-300"
-          >
-            {item.icon}
+          <Link to={item.link} key={i} className="text-xl capitalize p-4 rounded-md hover:bg-orange-400 hover:text-white transition-all duration-300">
             {item.title}
           </Link>
         ))}
       </div>
-      <div>
-        <button className="bg-gray-600 w-full p-2 rounded" onClick={logout}>
-          Log Out
-        </button>
-      </div>
+      
     </>
   );
 };

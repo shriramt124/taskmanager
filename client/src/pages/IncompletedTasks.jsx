@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Cards from '../components/Cards';
+import { useNavigate } from 'react-router-dom';
 
 const IncompletedTasks = () => {
-  
+  const navigate = useNavigate()
   const [Data,setData] = useState();
  const [isChanged,setIsChanged] = useState(false)
 
@@ -18,6 +19,9 @@ const IncompletedTasks = () => {
         "http://localhost:2000/api/tasks/get-incompleted-tasks",
         { headers: headers }
       );
+      if(response.success === false){
+      navigate("/login")
+      }
       setData(response.data.data);
     };
     fetch();

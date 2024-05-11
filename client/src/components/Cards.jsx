@@ -79,11 +79,11 @@ function Cards({ isHome, setInputdiv, data, setUpdatedData,isChanged,setIsChange
  
 
   return (
-    <div className="flex gap-2 flex-wrap">
+    <div className="flex gap-2 flex-wrap mx-6 my-4 justify-center md:justify-start p-2">
       {data &&
         data.map((items, i) => (
           <div
-            className="w-[300px] sm:w-[400px] bg-gray-700 p-4 rounded-md"
+            className="w-[400px] md:w-[500px] bg-gray-200 capitalize p-4 rounded-md"
             key={Math.random() * 10}
           >
             <div key={i}>
@@ -95,7 +95,7 @@ function Cards({ isHome, setInputdiv, data, setUpdatedData,isChanged,setIsChange
                 className={`${
                   items.complete === true
                     ? "bg-green-400 p-2 rounded-sm"
-                    : "bg-red-500 p-2 rounded-sm"
+                    : "bg-gray-300 p-2 rounded-sm"
                 }`}
                 onClick={() => handleComplete(items._id)}
               >
@@ -106,7 +106,7 @@ function Cards({ isHome, setInputdiv, data, setUpdatedData,isChanged,setIsChange
                   className={`${
                     items.important === true
                       ? "bg-red-500 p-2"
-                      : "bg-gray-500 p-2"
+                      : "bg-gray-300 p-2"
                   }`}
                   onClick={() => handleImportantTask(items._id)}
                 >
@@ -114,7 +114,7 @@ function Cards({ isHome, setInputdiv, data, setUpdatedData,isChanged,setIsChange
                 </button>
                 {isHome && (
                   <button
-                    className="bg-gray-500 p-2"
+                    className="bg-gray-300 p-2"
                     onClick={() =>
                       handleUpdate(items._id, items.title, items.desc)
                     }
@@ -123,7 +123,7 @@ function Cards({ isHome, setInputdiv, data, setUpdatedData,isChanged,setIsChange
                   </button>
                 )}
                 <button
-                  className="bg-gray-500 p-2"
+                  className="bg-gray-300 p-2"
                   onClick={() => deleteTask(items._id)}
                 >
                   delete
@@ -135,7 +135,7 @@ function Cards({ isHome, setInputdiv, data, setUpdatedData,isChanged,setIsChange
       {isHome && (
         <div
           onClick={handleClick}
-          className="flex flex-col p-2 bg-gray-700 w-[300px] sm:w-[400px] rounded-md items-center hover:translate-x-5 transition-all duration-500 cursor-pointer"
+          className="flex flex-col p-2 bg-gray-200 w-[400px] md:w-[500px] rounded-md items-center hover:translate-x-5 transition-all duration-500 cursor-pointer"
         >
           <IoAddCircleSharp className="text-6xl items-center" />
           <h2 className="text-2xl text-gray-500 items-center">Add task</h2>

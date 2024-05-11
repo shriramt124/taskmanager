@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Cards from "../components/Cards";
 import InputData from "../components/InputData";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Alltasks = () => {
+  const navigate = useNavigate()
   const [Data, setData] = useState();
   const [isChanged,setIsChanged] = useState();
 
@@ -20,11 +22,18 @@ const Alltasks = () => {
   };
 
   const fetch = async () => {
+    try {
+      
+     
     const response = await axios.get(
       "http://localhost:2000/api/tasks/all-tasks",
       { headers: headers }
     );
     setData(response.data.data);
+  } catch (error) {
+      navigate("/login");
+
+  }
   };
     
   useEffect(() => {
